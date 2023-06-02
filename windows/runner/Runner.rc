@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "local_notification_app_demo" "\0"
+            VALUE "FileDescription", "ECO365" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "local_notification_app_demo" "\0"
+            VALUE "InternalName", "ECO365" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "local_notification_app_demo.exe" "\0"
-            VALUE "ProductName", "local_notification_app_demo" "\0"
+            VALUE "OriginalFilename", "ECO365.exe" "\0"
+            VALUE "ProductName", "ECO365" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

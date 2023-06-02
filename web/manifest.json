@@ -1,6 +1,6 @@
 {
-    "name": "local_notification_app_demo",
-    "short_name": "local_notification_app_demo",
+    "name": "ECO365",
+    "short_name": "ECO365",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#hexcode",

@@ -1,4 +1,4 @@
-package com.example.local_notification_app_demo
+package com.ECO365
 
 import io.flutter.embedding.android.FlutterActivity
 
