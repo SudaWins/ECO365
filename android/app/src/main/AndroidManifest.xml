@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.local_notification_app_demo">
+    package="com.ECO365">
    <application
-        android:label="local_notification_app_demo"
+        android:label="ECO365"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
