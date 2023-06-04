@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ECO365/Services/notifi_service.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -12,6 +14,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //inicializa o service de notificação
+  final NotificationService notificationService = NotificationService();
+  
+  @override
+  void initState() {
+    super.initState();
+    notificationService.initNotification();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
             child: ElevatedButton(
               child: const Text('Mostrar Notificação'),
               onPressed: () {
-                NotificationService()
-                    .showNotification(title: 'Amostra', body: 'Funciona!');
+                /* NotificationService() */
+                    /* .showNotification(title: 'Amostra', body: 'Funciona!'); */
+                NotificationService notificationService = NotificationService();
+                notificationService.showNotification();
               },
             ),
           ),

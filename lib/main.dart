@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Services/notifi_service.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'home_page.dart';
+
 //teste de commit yasuda 1
 void main() {
   /* WidgetsFlutterBinding.ensureInitialized(); */
