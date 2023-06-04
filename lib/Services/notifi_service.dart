@@ -129,18 +129,6 @@ class NotificationService {
       platformChannelSpecifics,
     );
 
-    // Função auxiliar para calcular a data e hora da próxima notificação
-    Future<tz.TZDateTime> _nextNotificationDateTime(int id) async {
-      final location = tz.getLocation('America/Sao_Paulo');
-
-
-      final SharedPreferences preferences = await SharedPreferences.getInstance();
-
-      final int storedDaysCount = preferences.getInt('daysCount_$id') ?? 0;
-      final int daysCount = storedDaysCount > 0 ? storedDaysCount : 0;
-
-      // Salvar o valor de daysCount no SharedPreferences
-      await preferences.setInt('daysCount_$id', daysCount);
 
       if (daysCount > 0) {
         // Se houver um valor de daysCount maior que zero, adicionar esse número de dias à data e hora atual
