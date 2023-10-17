@@ -1,0 +1,12 @@
+Verificar firebase ou qualquer outro DB para as notificações e provavel login
+
+verificar DateTime savedNotificationTime no _scheduleNextNotification{} no arquivo notifi_service.dart{
+    96,109
+}
+
+
+
+dia 16/10/2023:
+*alterar o showNotification para pegar uma notificação salva no banco local ou remoto.
+*entender melhor pra q serve o initNotification
+*

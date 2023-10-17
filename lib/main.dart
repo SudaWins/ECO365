@@ -8,7 +8,9 @@ void main() {
   /* WidgetsFlutterBinding.ensureInitialized(); */
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  NotificationService().initNotification();
+  NotificationService(
+          title: "titulo teste", body: "corpo teste", weekdays: Weekdays())
+      .initNotification();
   FlutterNativeSplash.remove();
   runApp(const MyApp());
 }
@@ -22,11 +24,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Notifications',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        //primarySwatch: const Color.blue,
-        colorSchemeSeed: Color(0x28c667),
-        brightness: Brightness.dark,
-        useMaterial3: true
-      ),
+          //primarySwatch: const Color.blue,
+          colorSchemeSeed: Color(0x28c667),
+          brightness: Brightness.dark,
+          useMaterial3: true),
       home: const MyHomePage(title: 'ECO 365'),
     );
   }

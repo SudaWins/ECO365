@@ -1,0 +1,71 @@
+descrições
+///////////////////////////////////////////////////
+
+vou_fazer e ja_fiz
+
+Aqui está a explicação detalhada da lógica por trás de cada bloco:
+
+Ação "vou_fazer":
+
+Quando essa ação é selecionada, a contagem de dias (daysCount) é zerada, indicando que a ação "vou_fazer" foi tomada.
+Em seguida, é agendada uma nova notificação para ser exibida daqui a 5 minutos, utilizando o método zonedSchedule do notificationsPlugin. Isso significa que após 5 minutos, a notificação será exibida novamente.
+Não é necessário chamar a função auxiliar _nextNotificationDateTime nesse caso.
+Ação "ja_fiz":
+
+Quando essa ação é selecionada, a contagem de dias (daysCount) é incrementada em 1, indicando que a ação "ja_fiz" foi tomada.
+Em seguida, é agendada uma nova notificação para ser exibida daqui a "daysCount" dias, utilizando o método zonedSchedule do notificationsPlugin. Isso significa que após o número de dias especificado pela contagem, a notificação será exibida novamente.
+Além disso, é chamada a função auxiliar _nextNotificationDateTime para calcular a data e hora da próxima notificação com base na contagem atualizada. Essa nova notificação será agendada usando o resultado retornado pela função _nextNotificationDateTime.
+Isso permite que a próxima notificação seja agendada com base na lógica específica definida na função _nextNotificationDateTime, que verifica se a contagem de dias é maior que zero e adiciona esse número de dias à data e hora atual.
+Portanto, a diferença entre os dois blocos é que a ação "vou_fazer" agenda uma nova notificação para ser exibida após 5 minutos, enquanto a ação "ja_fiz" agenda uma nova notificação com base na contagem de dias atualizada e também utiliza a função _nextNotificationDateTime para calcular a data e hora da próxima notificação com base nessa contagem.
+
+///////////////////////////////////////////////////
+
+_nextNotificationDateTime(int id)
+
+// Função auxiliar para calcular a data e hora da próxima notificação
+  Future<tz.TZDateTime> _nextNotificationDateTime(int id) async {}
+  
+  
+  Explicação detalhada do bloco:
+
+1 - final location = tz.getLocation('America/Sao_Paulo');:
+
+	*Aqui, a função getLocation do pacote timezone é usada para obter a localização referente ao fuso horário de "America/Sao_Paulo". Essa localização será usada para criar a data e hora da próxima notificação.
+
+2 - final SharedPreferences preferences = await SharedPreferences.getInstance();:
+
+	*Aqui, é criada uma instância de SharedPreferences utilizando o método getInstance(). Essa classe permite salvar e recuperar dados persistentes de forma simples no dispositivo. Ela será usada para armazenar e recuperar o valor de daysCount para cada notificação individualmente.
+
+3 - final int storedDaysCount = preferences.getInt('daysCount_$id') ?? 0;:
+
+	*Aqui, é obtido o valor de daysCount armazenado no SharedPreferences usando a chave 'daysCount_$id', onde $id é o valor único do identificador da notificação.
+
+	*O operador ?? é chamado operador de coalescência nula (null coalescing operator) e é usado para retornar o valor à esquerda, a menos que seja nulo, caso em que o valor à direita será retornado. Nesse caso, se o valor de storedDaysCount for nulo (ou seja, a chave ainda não existe), o valor padrão será 0.
+
+4 - final int daysCount = storedDaysCount > 0 ? storedDaysCount : 0;:
+
+	*Aqui, o valor de storedDaysCount é atribuído a daysCount somente se storedDaysCount for maior que 0. Caso contrário, daysCount será definido como 0.
+
+5 - await preferences.setInt('daysCount_$id', daysCount);:
+
+	*Aqui, o valor de daysCount é salvo no SharedPreferences usando a chave 'daysCount_$id', para que possa ser recuperado posteriormente.
+
+6 - if (daysCount > 0) { ... } else { ... }:
+
+	*Aqui, é verificado se daysCount é maior que 0.
+	
+	*Se for maior que 0, significa que já ocorreu pelo menos uma ação "ja_fiz" para essa notificação, e a função retorna a data e hora atual mais daysCount
+  
+///////////////////////////////////////////////////
+
+_scheduleNextNotification
+
+	Nas linhas modificadas, criamos uma nova função _scheduleNextNotification para agendar a próxima notificação. Essa função recebe o ID da notificação, o título, o corpo, as configurações da plataforma e o horário da próxima notificação.
+
+	Dentro da função _scheduleNextNotification, utilizamos o método zonedSchedule para agendar a notificação para o horário especificado em nextNotificationTime.
+
+	Agora, tanto na ação "Vou Fazer" quanto na ação "Já Fiz", chamamos essa nova função _scheduleNextNotification passando os parâmetros relevantes.
+
+	Dessa forma, independentemente de quantas vezes a ação "Vou Fazer" for selecionada consecutivamente, a próxima notificação será sempre agendada com base no horário atual + 5 segundos.
+	
+///////////////////////////////////////////////////

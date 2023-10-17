@@ -5,7 +5,27 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:shared_preferences/shared_preferences.dart'; //A shared_preferences é uma biblioteca que permite salvar dados persistentes de forma simples no dispositivo. Com ela, você pode armazenar e recuperar os valores de daysCount para cada notificação individualmente.
 import 'package:flutter/cupertino.dart';
 
+class Weekdays {
+  bool? monday = false;
+  bool? tuesday = false;
+  bool? wednesday = false;
+  bool? thursday = false;
+  bool? friday = false;
+  bool? saturday = false;
+  bool? sunday = false;
+}
+
 class NotificationService {
+  String title;
+  String body;
+  Weekdays weekdays = Weekdays();
+
+  //NotificationService();
+  NotificationService(
+      {required this.title, required this.body, required this.weekdays});
+
+  //função para trocar titulo  e outra pra torcar o body com um simples setter para isso
+
   final FlutterLocalNotificationsPlugin notificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
@@ -60,12 +80,13 @@ class NotificationService {
   }
 
   Future<void> _scheduleNextNotification(
-      int id,
-      String title,
-      String body,
-      NotificationDetails platformChannelSpecifics,
-      DateTime nextNotificationTime,
-      DateTime savedNotificationTime) async {
+    int id,
+    String title,
+    String body,
+    NotificationDetails platformChannelSpecifics,
+    DateTime nextNotificationTime,
+    /* DateTime savedNotificationTime */
+  ) async {
     await notificationsPlugin.zonedSchedule(
       id,
       title,
@@ -93,7 +114,7 @@ class NotificationService {
       final DateTime nextNotificationTime =
           DateTime.now().add(const Duration(seconds: 30));
       await _scheduleNextNotification(id, title, body, platformChannelSpecifics,
-          nextNotificationTime, savedNotificationTime);
+          nextNotificationTime /* , savedNotificationTime */);
     } else if (payload == 'ja_fiz') {
       // Ação "Já Fiz" selecionada
       final SharedPreferences preferences =
@@ -106,14 +127,14 @@ class NotificationService {
       // Agendar a próxima notificação usando a função auxiliar _nextNotificationDateTime
       final DateTime nextNotificationTime = await _nextNotificationDateTime(id);
       await _scheduleNextNotification(id, title, body, platformChannelSpecifics,
-          nextNotificationTime, savedNotificationTime);
+          nextNotificationTime /* , savedNotificationTime */);
     }
   }
 
-  Future<void> showNotification() async {
+  Future<void> showNotification(NotificationService notificationService) async {
     const int id = 0; // ID único da notificação
-    const String title = 'Título da notificação';
-    const String body = 'Conteúdo da notificação';
+    String title = notificationService.title;
+    String body = notificationService.body;
 
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
