@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'Services/notifi_service.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'home_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 //teste de commit yasuda 1
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   /* WidgetsFlutterBinding.ensureInitialized(); */
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);

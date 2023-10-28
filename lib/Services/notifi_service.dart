@@ -16,6 +16,7 @@ class Weekdays {
 }
 
 class NotificationService {
+  int id = UniqueKey() as int;
   String title;
   String body;
   Weekdays weekdays = Weekdays();
@@ -25,6 +26,17 @@ class NotificationService {
       {required this.title, required this.body, required this.weekdays});
 
   //função para trocar titulo  e outra pra torcar o body com um simples setter para isso
+  getId() {
+    return this.id;
+  }
+
+  setTitle(String title) {
+    this.title = title;
+  }
+
+  setBody(String body) {
+    this.body = body;
+  }
 
   final FlutterLocalNotificationsPlugin notificationsPlugin =
       FlutterLocalNotificationsPlugin();

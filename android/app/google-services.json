@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "69321360066",
+    "project_id": "eco365-c6dca",
+    "storage_bucket": "eco365-c6dca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69321360066:android:d5a8f2d07c2b60d348315b",
+        "android_client_info": {
+          "package_name": "com.ECO365"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn5xPUa9J6MTrHW0faWFGfhprFzNEAqjg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

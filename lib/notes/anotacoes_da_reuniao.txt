@@ -10,3 +10,6 @@ dia 16/10/2023:
 *alterar o showNotification para pegar uma notificação salva no banco local ou remoto.
 *entender melhor pra q serve o initNotification
 *
+
+criar um gerador de id ou algo assim.(usar firebase, aparentemente localmente pode ser q nao persista)
+fazer vetor com todos os ids ativos ?
